@@ -5,18 +5,13 @@ import Pages.WebOrderPages.HomePage;
 import Pages.WebOrderPages.OrderPage;
 import Utils.BrowserUtils;
 import Utils.Driver;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.BrokenBarrierException;
 
 public class NewOrderSteps {
     WebDriver driver = Driver.getDriver();
@@ -75,6 +70,8 @@ public class NewOrderSteps {
         Assert.assertEquals(orderDetails.get(2).getText() , productName);
         Assert.assertEquals(orderDetails.get(3).getText() , quantity);
         String today = BrowserUtils.todaysDate("MM/dd/yyyy");
+        //While we are asserting in JUNIT first EXPECTED AND SECOND ACTUAL
+        //in TESTNG first actual then expected
         Assert.assertEquals(orderDetails.get(4).getText() , today);
         Assert.assertEquals(orderDetails.get(5).getText() , address);
         Assert.assertEquals(orderDetails.get(6).getText() , city);
@@ -99,5 +96,18 @@ public class NewOrderSteps {
     public void the_user_validate_the_adress_information(List<String> addressInformation) {
       List<String > actualAddress = BrowserUtils.getTextOfElement(orderPage.addressDetails);
       Assert.assertEquals(actualAddress , addressInformation );
+    }
+
+    @Then("the user clicks the all products button")
+    public void the_user_clicks_the_all_products_button() {
+      homePage.allProductsButton.click();
+    }
+
+    @Then("the user validate the product details")
+    public void the_user_validate_the_product_details(DataTable dataTable) {
+      List<WebElement> pTable = homePage.productTable;
+    for(int i =0 ; i<dataTable.asList().size() ; i++){
+        Assert.assertEquals("Validation of product table",dataTable.asList().get(i) , pTable.get(i).getText());
+    }
     }
 }

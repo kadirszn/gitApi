@@ -32,6 +32,7 @@ public class NoteforGITHUB {
   git pull  ==> download changes to a project ( remote repository )
   git push ==> Upload my changes to project (remote repository )
   git remote add origin ==> link your local project to a remote project
+  git stash ==>
 
   Local repository:                                      Remote:
   - working directory                                   - GitHub
@@ -40,9 +41,16 @@ public class NoteforGITHUB {
 
   1) Make some changes in working directory -> Add files to a staging are --> Commit
   file from staging area to a local repo --> Push files from local to remote repository
+
   Code flow to upload changes to remote repo:
   make changes -->git add -->git commit -->git push
 
+git add fileName           - adds specific file to a staging area
+git commit -m "my message" -commits files from staging area with a message to a local repository
+git push                   - upload changes to a remote repository
+
+  Before push you have to pull.
+  Before uploading your changes to a remote repository you have to download the latest code from remote repo.
 
   Note:
   .gitignore

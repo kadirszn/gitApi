@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class HomePage {
 
     public HomePage(WebDriver driver){
@@ -23,4 +25,9 @@ public class HomePage {
     @FindBy(xpath = "//a[contains(text(),'View all orders')]")
     public WebElement viewAllOrder;
 
+    @FindBy(xpath = "//a[contains(text(),'View all products')]")
+    public WebElement allProductsButton;
+
+    @FindBy(xpath = "//table[@class='ProductsTable']//tr//*")
+    public List<WebElement> productTable;
 }

@@ -1,5 +1,5 @@
 Feature: Validate search in Etsy
-   Background: It will run before each scenario
+   Background: It will run before each scenarioR
      Given the user goes to the Etsy
      # we need to run three scenario and before every scenario I want to navigate the etsy expect second scenario.
   @etsy @tt

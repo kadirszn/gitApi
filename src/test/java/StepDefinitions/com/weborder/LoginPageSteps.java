@@ -16,27 +16,29 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPageSteps {
 
-    WebDriver driver= Driver.getDriver();
-    LoginPage loginPage=new LoginPage(driver);
-    HomePage homePage=new HomePage(driver);
+    WebDriver driver = Driver.getDriver();
+    LoginPage loginPage = new LoginPage(driver);
+    HomePage homePage = new HomePage(driver);
 
-@Before
-public void message(){
-    System.out.println("Login page step Class");
-}
-@BeforeStep
-public void beforeStep(){
-    System.out.println("Before each steps");
-}
-@AfterStep
-public void afterStep(){
-    System.out.println("After each steps");
-}
+    @Before
+    public void message() {
+        System.out.println("Login page step Class");
+    }
+
+    @BeforeStep
+    public void beforeStep() {
+        System.out.println("Before each steps");
+    }
+
+    @AfterStep
+    public void afterStep() {
+        System.out.println("After each steps");
+    }
 
     @Then("the demoUser validate the home page")
     public void the_demoUser_validate_the_home_page() {
 
-        Assert.assertEquals(driver.getTitle(),"Web Orders");
+        Assert.assertEquals(driver.getTitle(), "Web Orders");
         Assert.assertTrue(homePage.logoutButton.isDisplayed());
         Assert.assertTrue(homePage.welcomeText.getText().contains("Welcome, Tester!"));
 
@@ -50,16 +52,13 @@ public void afterStep(){
 
     @When("the demoUser enters password {string}")
     public void the_demoUser_enters_password(String password) {
-
         loginPage.password.sendKeys(password);
         loginPage.loginButton.click();
     }
 
     @Then("the demoUser validate {string}")
     public void the_demoUser_validate(String expected) {
-       Assert.assertEquals("Error Message Validation",expected,loginPage.errorText.getText());
+        Assert.assertEquals("Error Message Validation", expected, loginPage.errorText.getText());
     }
-
-
 
 }
